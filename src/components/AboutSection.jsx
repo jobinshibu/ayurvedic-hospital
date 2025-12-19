@@ -109,7 +109,7 @@ export default function AboutSection() {
               About Namaste Ayurveda
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="text-5xl md:text-6xl font-medium text-gray-900 mb-6 leading-tight">
             Healing Through
             <span className="block bg-gradient-to-r from-green-600 via-emerald-500 to-teal-600 bg-clip-text text-transparent animate-text-gradient bg-[length:200%_auto]">
               Ancient Wisdom
@@ -128,35 +128,33 @@ export default function AboutSection() {
             }`}
         >
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Story Image - LEFT SIDE - now with small rounding */}
-            <div className="relative group">
-              <div className="relative overflow-hidden rounded-lg shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-500">
+            {/* Story Image - LEFT SIDE - now with small rounding and slow pan */}
+            <div className="relative group overflow-hidden rounded-2xl shadow-xl">
+              <div className="relative h-[500px] overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
                   alt="Ayurvedic Wellness"
-                  className="w-full h-[500px] object-cover"
+                  className="w-full h-full object-cover transform transition-transform duration-[20s] ease-linear group-hover:scale-110"
                 />
-                <div className="absolute inset-0 rounded-sm bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                <div className="absolute bottom-8 left-8 right-8">
-                  <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60"></div>
+
+                <div className="absolute bottom-8 left-8 right-8 z-10 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="bg-white/95 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
                     <div className="flex items-center gap-3 mb-2">
-                      <Award className="w-6 h-6 text-green-600" />
-                      <span className="text-sm font-semibold text-green-600">Certified Excellence</span>
+                      <Award className="w-5 h-5 text-emerald-600" />
+                      <span className="text-sm font-bold text-emerald-800 tracking-wide uppercase">Certified Excellence</span>
                     </div>
-                    <p className="text-gray-800 font-medium">
-                      Preserving 5000+ years of Ayurvedic wisdom
+                    <p className="text-gray-800 font-serif italic text-lg dark:text-gray-200">
+                      "Preserving 5000+ years of Ayurvedic wisdom"
                     </p>
                   </div>
                 </div>
               </div>
-              {/* Decorative Elements */}
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-20 blur-2xl group-hover:opacity-30 transition-opacity"></div>
-              <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-20 blur-2xl group-hover:opacity-30 transition-opacity"></div>
             </div>
 
             {/* Story Content */}
             <div className="space-y-6">
-              <h3 className="text-4xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <h3 className="text-4xl font-semibold text-gray-900 mb-6 flex items-center gap-3">
                 Our Story
                 <div className="h-1 w-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
               </h3>
@@ -205,7 +203,7 @@ export default function AboutSection() {
                   <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <span className="text-3xl">🌟</span>
                   </div>
-                  <h3 className="text-3xl font-semibold text-gray-800">Our Vision</h3>
+                  <h3 className="text-3xl font-medium text-gray-800">Our Vision</h3>
                 </div>
 
                 <p className="text-base text-gray-700 leading-relaxed mb-8">
@@ -216,11 +214,14 @@ export default function AboutSection() {
 
                 <div className="space-y-4">
                   {['Global Wellness', 'Innovation in Tradition', 'Preventive Healthcare', 'Sustainable Living'].map((item, index) => (
-                    <div key={index} className="flex items-center gap-3 group/item">
-                      <div className="w-8 h-8 bg-white rounded-lg shadow-sm flex items-center justify-center group-hover/item:bg-green-600 transition-all duration-300">
-                        <div className="w-2 h-2 bg-green-600 rounded-full group-hover/item:bg-white transition-colors duration-300"></div>
+                    <div key={index} className="flex items-center gap-3 group/item cursor-default">
+                      <div className="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center group-hover/item:bg-green-600 transition-all duration-300 shadow-sm border border-green-100">
+                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full group-hover/item:scale-125 group-hover/item:bg-white transition-all duration-300"></div>
                       </div>
-                      <span className="text-sm text-gray-800 font-medium group-hover/item:text-green-700 transition-colors duration-300">{item}</span>
+                      <span className="text-sm text-gray-700 font-medium group-hover/item:text-green-800 transition-colors duration-300 relative">
+                        {item}
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover/item:w-full"></span>
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -237,7 +238,7 @@ export default function AboutSection() {
                   <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <span className="text-3xl">🕉️</span>
                   </div>
-                  <h3 className="text-3xl font-semibold text-gray-800">Our Mission</h3>
+                  <h3 className="text-3xl font-medium text-gray-800">Our Mission</h3>
                 </div>
 
                 <p className="text-base text-gray-700 leading-relaxed mb-8">
@@ -261,47 +262,31 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Statistics */}
+        {/* Statistics - Minimal Design */}
         <div
           id="stats-section"
           data-animate
           className={`mb-32 transition-all duration-1000 ${isVisible['stats-section'] ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}
         >
-          <div className="relative border-2 rounded-2xl border-green-200 to-slate-900 p-16 overflow-hidden">
-            {/* Subtle pattern overlay */}
-            <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
-
-            {/* Golden accents */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent"></div>
-
-            <div className="relative z-10 grid md:grid-cols-3 gap-16">
+          <div className="bg-white rounded-3xl shadow-sm border border-green-50 p-12">
+            <div className="grid md:grid-cols-3 gap-12 text-center divide-y md:divide-y-0 md:divide-x divide-green-100">
               {stats.map((stat, index) => {
                 const IconComponent = stat.icon;
                 const counterValue = index === 0 ? counters.patients : index === 1 ? counters.therapists : counters.treatments;
 
                 return (
-                  <div
-                    key={index}
-                    className="text-center group relative"
-                  >
-                    {/* Vertical divider (not on last item) */}
-                    {index < 2 && (
-                      <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-24 bg-gradient-to-b from-transparent via-slate-600 to-transparent"></div>
-                    )}
-
-                    <div className="inline-flex items-center justify-center w-20 h-20 mb-8 relative">
-                      <div className="absolute inset-0 bg-amber-500/10 rounded-full blur-xl group-hover:bg-amber-500/20 transition-all duration-700"></div>
-                      <div className="relative border border-amber-500/20 rounded-full p-4 group-hover:border-amber-500/40 transition-all duration-500">
-                        <IconComponent className="w-8 h-8 text-amber-400" />
-                      </div>
+                  <div key={index} className="flex flex-col items-center pt-8 md:pt-0 px-4">
+                    <div className={`mb-6 p-4 rounded-2xl bg-${stat.color}-50 text-${stat.color}-600 transform transition-transform duration-500 hover:scale-110`}>
+                      <IconComponent className="w-8 h-8" />
                     </div>
 
-                    <div className="text-6xl md:text-7xl font-light text-white mb-4 tracking-tight" style={{ fontFamily: 'Georgia, serif' }}>
-                      {counterValue}<span className="text-amber-400">{stat.suffix}</span>
+                    <div className="text-5xl md:text-6xl font-light text-gray-900 mb-3 tracking-tight font-serif">
+                      {counterValue}
+                      <span className="text-green-500 text-4xl align-top ml-1">{stat.suffix}</span>
                     </div>
-                    <div className="text-xs text-slate-400 font-medium uppercase tracking-[0.2em] letterspacing-widest">
+
+                    <div className="text-sm font-medium text-gray-500 uppercase tracking-widest">
                       {stat.label}
                     </div>
                   </div>
@@ -311,24 +296,24 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Core Values */}
+        {/* Core Values - Premium Design */}
         <div
           id="values-section"
           data-animate
-          className={`transition-all duration-1000 ${isVisible['values-section'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          className={`relative py-24 transition-all duration-1000 ${isVisible['values-section'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
         >
-          <div className="text-center mb-20">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-slate-300"></div>
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-[0.3em]">Philosophy</span>
-              <div className="w-12 h-px bg-gradient-to-l from-transparent to-slate-300"></div>
-            </div>
-            <h3 className="text-4xl md:text-5xl font-light text-slate-900 mb-6 tracking-tight" style={{ fontFamily: 'Georgia, serif' }}>
-              Our Core Values
+          {/* Subtle Section Background */}
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[80%] bg-gradient-to-r from-emerald-50/30 via-emerald-100/60 to-emerald-50/30 skew-y-3 -z-10"></div>
+
+          <div className="text-center mb-24">
+            <span className="text-emerald-600 font-semibold tracking-[0.2em] text-sm uppercase mb-4 block">Our Philosophy</span>
+            <h3 className="text-5xl md:text-6xl font-serif text-slate-800 mb-6 tracking-tight relative inline-block">
+              Core Values
+              <span className="absolute -top-6 -right-8 text-6xl text-emerald-100/50 -z-10 animate-pulse-slow">✦</span>
             </h3>
-            <p className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              The principles that guide our practice and define our commitment to your wellness
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto font-light leading-relaxed">
+              Guiding principles that define our commitment to your holistic wellness
             </p>
           </div>
 
@@ -336,34 +321,37 @@ export default function AboutSection() {
             {values.map((value, index) => (
               <div
                 key={index}
-                className="group relative"
-              >x
-                {/* Hover glow effect */}
-                <div className="absolute -inset-px bg-gradient-to-b from-amber-200/0 via-amber-200/50 to-amber-200/0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                className="group relative h-full"
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
+                <div className="relative h-full bg-white/80 backdrop-blur-sm p-10 rounded-2xl border border-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden">
 
-                <div className="relative h-full bg-white p-10 border border-slate-200 group-hover:border-amber-300/50 transition-all duration-500 group-hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)]">
-                  {/* Top accent line */}
-                  <div className="absolute top-0 left-0 w-0 h-px bg-gradient-to-r from-amber-400 to-transparent group-hover:w-full transition-all duration-700"></div>
+                  {/* Watermark Number */}
+                  <div className="absolute top-2 right-4 text-9xl font-serif text-slate-50 opacity-[0.08] group-hover:opacity-[0.15] transition-opacity duration-500 select-none">
+                    0{index + 1}
+                  </div>
 
-                  {/* Icon */}
-                  <div className="mb-8">
-                    <div className="relative inline-block">
-                      <div className="absolute inset-0 bg-amber-100/50 blur-xl rounded-full group-hover:bg-amber-200/50 transition-colors duration-500"></div>
-                      <div className="relative text-5xl opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500">
-                        {value.icon}
-                      </div>
+                  {/* Gradient Glow on Hover */}
+                  <div className={`absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine`} />
+
+                  {/* Icon Container */}
+                  <div className="relative mb-8 w-16 h-16">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-10 rounded-2xl rotate-3 group-hover:rotate-6 transition-transform duration-500`}></div>
+                    <div className="absolute inset-0 bg-white border border-slate-100 rounded-2xl shadow-sm flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-500">
+                      {value.icon}
                     </div>
                   </div>
 
-                  <h4 className="text-xl font-light text-slate-900 mb-4 tracking-tight" style={{ fontFamily: 'Georgia, serif' }}>
+                  <h4 className="text-2xl font-serif text-slate-800 mb-4 group-hover:text-emerald-700 transition-colors duration-300">
                     {value.title}
                   </h4>
-                  <p className="text-sm text-slate-600 leading-relaxed">
+
+                  <p className="text-sm text-slate-600 leading-relaxed font-light relative z-10">
                     {value.description}
                   </p>
 
-                  {/* Bottom corner accent */}
-                  <div className="absolute bottom-0 right-0 w-16 h-16 border-r border-b border-slate-100 group-hover:border-amber-200 transition-colors duration-500"></div>
+                  {/* Decorative Bottom Line */}
+                  <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${value.gradient} w-0 group-hover:w-full transition-all duration-700 ease-in-out`}></div>
                 </div>
               </div>
             ))}
@@ -384,9 +372,9 @@ export default function AboutSection() {
           50% { background-position: 100% 50%; }
         }
 
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(1.05); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .animate-blob {
@@ -397,8 +385,8 @@ export default function AboutSection() {
           animation: text-gradient 3s ease infinite;
         }
 
-        .animate-pulse-slow {
-          animation: pulse-slow 3s ease-in-out infinite;
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
         }
 
         .animation-delay-2000 {
