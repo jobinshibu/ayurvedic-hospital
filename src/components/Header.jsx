@@ -18,17 +18,17 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div 
+          <div
             className="flex items-center space-x-3 cursor-pointer"
             onClick={() => {
               window.location.href = '#home';
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-          >  
+          >
             <div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0">
-              <img 
-                src="/logo.jpg" 
-                alt="Namaste Ayurveda Logo" 
+              <img
+                src="/logo.jpg"
+                alt="Namaste Ayurveda Logo"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -53,7 +53,7 @@ export default function Header() {
 
           {/* Contact Info */}
           <div className="hidden lg:flex items-center space-x-4 text-sm text-gray-600">
-            <a 
+            <a
               href="tel:+919876543210"
               className="flex items-center space-x-1 hover:text-green-600 transition-colors cursor-pointer"
             >
@@ -86,7 +86,7 @@ export default function Header() {
                 </a>
               ))}
               <div className="pt-3 border-t border-gray-200">
-                <a 
+                <a
                   href="tel:+919876543210"
                   className="flex items-center space-x-2 text-sm text-gray-600 hover:text-green-600 transition-colors cursor-pointer"
                 >

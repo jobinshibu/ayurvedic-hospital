@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, MessageCircle, Send, User, FileText, Facebook, Instagram} from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, Send, User, FileText, Facebook, Instagram } from 'lucide-react';
 
 export default function ContactSection() {
   const contactInfo = [
@@ -72,7 +72,7 @@ export default function ContactSection() {
             Contact & <span className="text-green-600">Enquiry</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Get in touch with us for personalized Ayurvedic consultations and treatments. 
+            Get in touch with us for personalized Ayurvedic consultations and treatments.
             We're here to guide you on your journey to natural wellness.
           </p>
         </div>
@@ -141,7 +141,7 @@ export default function ContactSection() {
                 We'd love to hear from you. Send us a message and we'll respond as soon as possible.
               </p>
             </div>
-            
+
             <div className="p-8">
               {/* Name and Email Row */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -239,7 +239,7 @@ export default function ContactSection() {
                   <Send size={20} />
                   <span>Send Message</span>
                 </button>
-                
+
                 <div className="flex items-center space-x-2 text-xs text-gray-500">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <span>We typically respond within 2-4 hours</span>

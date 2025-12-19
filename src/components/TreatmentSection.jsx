@@ -125,7 +125,7 @@ export default function TreatmentsSection() {
             Authentic Ayurvedic Therapies
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Experience the healing power of traditional Ayurveda through our comprehensive range of 
+            Experience the healing power of traditional Ayurveda through our comprehensive range of
             therapeutic treatments designed to restore balance and promote natural wellness
           </p>
         </div>
@@ -143,11 +143,11 @@ export default function TreatmentsSection() {
                   </div>
                 </div>
               )}
-              
+
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={treatment.image} 
+                <img
+                  src={treatment.image}
                   alt={treatment.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
@@ -222,7 +222,7 @@ export default function TreatmentsSection() {
                 {index < treatmentProcess.length - 1 && (
                   <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-green-300 to-transparent transform translate-x-4"></div>
                 )}
-                
+
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
                     <span className="text-2xl">{process.icon}</span>

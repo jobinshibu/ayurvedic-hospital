@@ -111,8 +111,8 @@ export default function DoctorsTestimonialSection() {
               {/* Doctor Photo & Info */}
               <div className="flex items-center mb-4 pt-2">
                 <div className="relative">
-                  <img 
-                    src={doctor.photo} 
+                  <img
+                    src={doctor.photo}
                     alt={doctor.name}
                     className="w-16 h-16 rounded-full object-cover border-4 border-gradient-to-r from-blue-400 to-green-400 shadow-md"
                   />
@@ -221,8 +221,8 @@ export default function DoctorsTestimonialSection() {
 
           {/* Google Reviews CTA */}
           <div className="text-center mt-8">
-            <a 
-              href="https://www.google.com/maps/place/Namaste+Ayurveda+Hospital/@11.3399245,76.2796351,17z/data=!4m8!3m7!1s0x3ba623c4707e4c0d:0x8f293f925f14bae3!8m2!3d11.3399245!4d76.2796351!9m1!1b1!16s%2Fg%2F11kr7vnrv3?entry=ttu#lrd=0x3ba623c4707e4c0d:0x8f293f925f14bae3,1" 
+            <a
+              href="https://www.google.com/maps/place/Namaste+Ayurveda+Hospital/@11.3399245,76.2796351,17z/data=!4m8!3m7!1s0x3ba623c4707e4c0d:0x8f293f925f14bae3!8m2!3d11.3399245!4d76.2796351!9m1!1b1!16s%2Fg%2F11kr7vnrv3?entry=ttu#lrd=0x3ba623c4707e4c0d:0x8f293f925f14bae3,1"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium"

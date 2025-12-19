@@ -124,15 +124,15 @@ export default function AyurvedaGallerySection() {
         <div className="relative">
           {/* Featured Image */}
           <div className="relative h-96 md:h-[500px] mb-8 rounded-3xl overflow-hidden group shadow-2xl">
-            <img 
+            <img
               src={galleryItems[currentIndex].src}
               alt={galleryItems[currentIndex].title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            
+
             {/* Overlay Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-            
+
             {/* Content Overlay */}
             <div className="absolute bottom-8 left-8 right-8 text-white">
               <div className="flex items-center justify-between">
@@ -147,19 +147,19 @@ export default function AyurvedaGallerySection() {
                     {galleryItems[currentIndex].description}
                   </p>
                 </div>
-                
+
 
               </div>
             </div>
 
             {/* Navigation Arrows */}
-            <button 
+            <button
               onClick={prevSlide}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-110"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
             </button>
-            <button 
+            <button
               onClick={nextSlide}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-110"
             >
@@ -167,7 +167,7 @@ export default function AyurvedaGallerySection() {
             </button>
 
             {/* Auto-play Control */}
-            <button 
+            <button
               onClick={() => setIsAutoPlay(!isAutoPlay)}
               className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
             >
@@ -177,23 +177,22 @@ export default function AyurvedaGallerySection() {
 
           {/* Horizontal Scrolling Thumbnails */}
           <div className="relative">
-            <div 
+            <div
               ref={scrollContainerRef}
               className="flex space-x-4 overflow-x-auto scrollbar-hide pb-4"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {galleryItems.map((item, index) => (
-                <div 
+                <div
                   key={item.id}
                   onClick={() => scrollToIndex(index)}
-                  className={`flex-shrink-0 cursor-pointer transition-all duration-300 ${
-                    index === currentIndex 
-                      ? 'ring-4 ring-green-400 ring-offset-2 scale-105' 
+                  className={`flex-shrink-0 cursor-pointer transition-all duration-300 ${index === currentIndex
+                      ? 'ring-4 ring-green-400 ring-offset-2 scale-105'
                       : 'hover:scale-105 hover:ring-2 hover:ring-green-300 hover:ring-offset-1'
-                  }`}
+                    }`}
                 >
                   <div className="relative w-32 h-24 md:w-40 md:h-28 rounded-xl overflow-hidden">
-                    <img 
+                    <img
                       src={item.src}
                       alt={item.title}
                       className="w-full h-full object-cover"
@@ -221,11 +220,10 @@ export default function AyurvedaGallerySection() {
                 <button
                   key={index}
                   onClick={() => scrollToIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex 
-                      ? 'bg-green-500 w-8' 
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
+                      ? 'bg-green-500 w-8'
                       : 'bg-gray-300 hover:bg-green-300'
-                  }`}
+                    }`}
                 />
               ))}
             </div>
