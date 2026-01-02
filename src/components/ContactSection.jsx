@@ -59,9 +59,60 @@ export default function ContactSection() {
     }
   ];
 
-  const handleSubmit = () => {
-    // Form submission logic will be implemented later
-    console.log('Form submitted - functionality to be added');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.phone || !formData.subject || !formData.message) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Using Formspree - Replace YOUR_FORM_ID with actual Formspree form ID
+      const response = await fetch('https://formspree.io/f/xlgdbglv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const [isVisible, setIsVisible] = useState({});
@@ -189,6 +240,22 @@ export default function ContactSection() {
                 </div>
               </div>
 
+              {submitStatus === 'success' && (
+                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
+                  <p className="text-green-800 font-medium text-center">
+                    ✓ Thank you for contacting us! We will get back to you shortly.
+                  </p>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                  <p className="text-red-800 font-medium text-center">
+                    ✗ Something went wrong. Please try again or contact us directly.
+                  </p>
+                </div>
+              )}
+
               <div className="space-y-6">
                 {/* Name and Email Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -200,6 +267,8 @@ export default function ContactSection() {
                       type="text"
                       id="name"
                       name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
                       required
                       className="w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 text-gray-900 placeholder-gray-400 hover:bg-white"
                       placeholder="John Doe"
@@ -213,6 +282,8 @@ export default function ContactSection() {
                       type="email"
                       id="email"
                       name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       required
                       className="w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 text-gray-900 placeholder-gray-400 hover:bg-white"
                       placeholder="john@example.com"
@@ -230,6 +301,9 @@ export default function ContactSection() {
                       type="tel"
                       id="phone"
                       name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 text-gray-900 placeholder-gray-400 hover:bg-white"
                       placeholder="+91 98765 43210"
                     />
@@ -242,6 +316,8 @@ export default function ContactSection() {
                       <select
                         id="subject"
                         name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
                         required
                         className="w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 text-gray-900 hover:bg-white appearance-none cursor-pointer"
                       >
@@ -267,6 +343,8 @@ export default function ContactSection() {
                   <textarea
                     id="message"
                     name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     required
                     rows="4"
                     className="w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 text-gray-900 placeholder-gray-400 hover:bg-white resize-none"
@@ -279,10 +357,23 @@ export default function ContactSection() {
                   <button
                     type="button"
                     onClick={handleSubmit}
-                    className="w-full bg-gradient-to-r from-green-600 to-emerald-700 text-white py-4 px-8 rounded-xl font-bold text-lg hover:from-green-700 hover:to-emerald-800 transition-all duration-300 transform hover:scale-[1.02] shadow-xl hover:shadow-green-200 flex items-center justify-center space-x-2"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-green-600 to-emerald-700 text-white py-4 px-8 rounded-xl font-bold text-lg hover:from-green-700 hover:to-emerald-800 transition-all duration-300 transform hover:scale-[1.02] shadow-xl hover:shadow-green-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Send size={20} />
-                    <span>Send Message</span>
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send size={20} />
+                        <span>Send Message</span>
+                      </>
+                    )}
                   </button>
                   <p className="text-xs text-gray-400 text-center mt-4">
                     We typically respond within 2-4 hours
