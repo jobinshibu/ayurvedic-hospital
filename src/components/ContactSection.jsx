@@ -271,7 +271,7 @@ export default function ContactSection() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 text-gray-900 placeholder-gray-400 hover:bg-white"
-                      placeholder="John Doe"
+                      placeholder="Harry Potter"
                     />
                   </div>
                   <div className="space-y-2">
@@ -286,7 +286,7 @@ export default function ContactSection() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 text-gray-900 placeholder-gray-400 hover:bg-white"
-                      placeholder="john@example.com"
+                      placeholder="harry@example.com"
                     />
                   </div>
                 </div>

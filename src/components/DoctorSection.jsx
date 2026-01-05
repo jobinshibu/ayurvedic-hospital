@@ -251,7 +251,7 @@ export default function DoctorsTestimonialSection() {
                 <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                   <span className="text-xs text-gray-400 font-medium">{review.date}</span>
                   <div className="flex items-center gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" className="w-4 h-4" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" className="w-4 h-4" />
                     <span className="text-xs font-bold text-gray-600">Posted on Google</span>
                   </div>
                 </div>
