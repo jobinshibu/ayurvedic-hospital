@@ -104,156 +104,193 @@ export default function AyurvedaGallerySection() {
     scrollToIndex(prevIndex);
   };
 
+  const [isVisible, setIsVisible] = useState({});
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="gallery" className="py-16 bg-gradient-to-b from-green-50 via-blue-50 to-purple-50 scroll-mt-16">
+    <section id="gallery" className="relative py-24 bg-gradient-to-br from-green-50/50 via-purple-50/30 to-blue-50/50 scroll-mt-12 overflow-hidden">
+      {/* Background Decorative */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-100/20 rounded-full blur-[100px] -z-10 animate-blob mix-blend-multiply"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-100/20 rounded-full blur-[100px] -z-10 animate-blob animation-delay-2000 mix-blend-multiply"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-100/10 rounded-full blur-[120px] -z-10 animate-blob animation-delay-4000"></div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-gradient-to-r from-green-100 to-blue-100 text-green-800 rounded-full text-sm font-medium mb-4">
+        <div
+          id="gallery-header"
+          data-animate
+          className={`text-center mb-16 transition-all duration-1000 ${isVisible['gallery-header'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-50 to-blue-50 rounded-full text-green-800 text-sm font-bold mb-6 border border-green-100 shadow-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
             Our Facilities
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          </div>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6 tracking-tight">
             Experience Our Healing Spaces
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
             Take a virtual tour of our state-of-the-art Ayurvedic treatment facilities designed for your complete wellness journey
           </p>
         </div>
 
         {/* Main Gallery Container */}
-        <div className="relative">
+        <div
+          id="gallery-container"
+          data-animate
+          className={`relative transition-all duration-1000 ${isVisible['gallery-container'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        >
           {/* Featured Image */}
-          <div className="relative h-96 md:h-[500px] mb-8 rounded-3xl overflow-hidden group shadow-2xl">
-            <img 
+          <div className="relative h-[500px] md:h-[600px] mb-10 rounded-[2.5rem] overflow-hidden group shadow-2xl border-4 border-white/50 ring-1 ring-gray-100">
+            <img
               src={galleryItems[currentIndex].src}
               alt={galleryItems[currentIndex].title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
             />
-            
+
             {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-            
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
             {/* Content Overlay */}
-            <div className="absolute bottom-8 left-8 right-8 text-white">
-              <div className="flex items-center justify-between">
+            <div className="absolute bottom-10 left-10 right-10 text-white z-10">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                  <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-3">
+                  <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-sm font-bold mb-4 border border-white/30 tracking-wide uppercase">
                     {galleryItems[currentIndex].category}
                   </span>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-2">
+                  <h3 className="text-3xl md:text-5xl font-serif font-bold mb-3 leading-tight text-white drop-shadow-lg">
                     {galleryItems[currentIndex].title}
                   </h3>
-                  <p className="text-lg text-gray-200 max-w-2xl">
+                  <p className="text-lg text-gray-200 max-w-2xl font-light leading-relaxed">
                     {galleryItems[currentIndex].description}
                   </p>
                 </div>
-                
-
               </div>
             </div>
 
             {/* Navigation Arrows */}
-            <button 
+            <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-110"
+              className="absolute left-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/90 hover:text-green-800 transition-all duration-300 hover:scale-110 border border-white/20 group/nav"
             >
-              <ChevronLeft className="w-6 h-6 text-white" />
+              <ChevronLeft className="w-6 h-6 text-white group-hover/nav:text-green-800" />
             </button>
-            <button 
+            <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-110"
+              className="absolute right-6 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/90 hover:text-green-800 transition-all duration-300 hover:scale-110 border border-white/20 group/nav"
             >
-              <ChevronRight className="w-6 h-6 text-white" />
+              <ChevronRight className="w-6 h-6 text-white group-hover/nav:text-green-800" />
             </button>
 
             {/* Auto-play Control */}
-            <button 
+            <button
               onClick={() => setIsAutoPlay(!isAutoPlay)}
-              className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+              className="absolute top-8 right-8 w-10 h-10 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/90 hover:text-black transition-all duration-300 border border-white/20"
+              title={isAutoPlay ? "Pause Autoplay" : "Start Autoplay"}
             >
-              {isAutoPlay ? <Pause className="w-4 h-4 text-white" /> : <Play className="w-4 h-4 text-white" />}
+              {isAutoPlay ? <Pause className="w-4 h-4 text-white hover:text-black" /> : <Play className="w-4 h-4 ml-0.5 text-white hover:text-black" />}
             </button>
           </div>
 
           {/* Horizontal Scrolling Thumbnails */}
-          <div className="relative">
-            <div 
+          <div className="relative px-4">
+            <div
               ref={scrollContainerRef}
-              className="flex space-x-4 overflow-x-auto scrollbar-hide pb-4"
+              className="flex space-x-5 overflow-x-auto scrollbar-hide pb-2 pt-2"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {galleryItems.map((item, index) => (
-                <div 
+                <div
                   key={item.id}
                   onClick={() => scrollToIndex(index)}
-                  className={`flex-shrink-0 cursor-pointer transition-all duration-300 ${
-                    index === currentIndex 
-                      ? 'ring-4 ring-green-400 ring-offset-2 scale-105' 
-                      : 'hover:scale-105 hover:ring-2 hover:ring-green-300 hover:ring-offset-1'
-                  }`}
+                  className={`flex-shrink-0 cursor-pointer transition-all duration-500 ease-out group ${index === currentIndex
+                    ? 'scale-105'
+                    : 'hover:scale-95 opacity-70 hover:opacity-100'
+                    }`}
                 >
-                  <div className="relative w-32 h-24 md:w-40 md:h-28 rounded-xl overflow-hidden">
-                    <img 
+                  <div className={`relative w-36 h-28 md:w-48 md:h-32 rounded-2xl overflow-hidden shadow-md ${index === currentIndex ? 'ring-4 ring-green-500/50 ring-offset-2' : ''
+                    }`}>
+                    <img
                       src={item.src}
                       alt={item.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    <div className="absolute bottom-2 left-2 right-2">
-                      <h4 className="text-white text-xs font-semibold truncate">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <h4 className="text-white text-xs font-bold truncate">
                         {item.title}
                       </h4>
-                      <p className="text-gray-300 text-xs truncate">
+                      <p className="text-gray-300 text-[10px] uppercase tracking-wider truncate">
                         {item.category}
                       </p>
                     </div>
-                    {index === currentIndex && (
-                      <div className="absolute inset-0 border-2 border-white rounded-xl"></div>
-                    )}
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Progress Indicators */}
-            <div className="flex justify-center mt-6 space-x-2">
+            <div className="flex justify-center mt-8 space-x-2">
               {galleryItems.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => scrollToIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex 
-                      ? 'bg-green-500 w-8' 
-                      : 'bg-gray-300 hover:bg-green-300'
-                  }`}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${index === currentIndex
+                    ? 'bg-gradient-to-r from-green-500 to-emerald-500 w-10'
+                    : 'bg-gray-200 w-2 hover:w-4 hover:bg-gray-300'
+                    }`}
                 />
               ))}
             </div>
           </div>
 
-          {/* Gallery Stats */}
-          <div className="mt-12 text-center">
-            <div className="inline-flex items-center bg-white rounded-2xl px-8 py-4 shadow-lg">
-              <div className="flex items-center space-x-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+          {/* Gallery Stats - Redesigned */}
+          <div
+            id="gallery-stats"
+            data-animate
+            className={`mt-20 transition-all duration-1000 delay-300 ${isVisible['gallery-stats'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          >
+            <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-xl border border-white/60 p-10 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-green-50 rounded-full blur-3xl -z-10 opacity-50"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -z-10 opacity-50"></div>
+
+              <div className="grid md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-100">
+                <div className="px-4 py-2 group cursor-default">
+                  <div className="text-4xl md:text-5xl font-serif font-bold bg-gradient-to-br from-green-600 to-emerald-700 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300 inline-block">
                     {galleryItems.length}+
                   </div>
-                  <div className="text-sm text-gray-600">Treatment Rooms</div>
+                  <div className="text-sm font-bold text-gray-500 uppercase tracking-widest">Treatment Rooms</div>
                 </div>
-                <div className="w-px h-12 bg-gray-300"></div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <div className="px-4 py-2 group cursor-default">
+                  <div className="text-4xl md:text-5xl font-serif font-bold bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300 inline-block">
                     5000+
                   </div>
-                  <div className="text-sm text-gray-600">Sq.ft Facility</div>
+                  <div className="text-sm font-bold text-gray-500 uppercase tracking-widest">Sq.ft Facility</div>
                 </div>
-                <div className="w-px h-12 bg-gray-300"></div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                <div className="px-4 py-2 group cursor-default">
+                  <div className="text-4xl md:text-5xl font-serif font-bold bg-gradient-to-br from-orange-500 to-red-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300 inline-block">
                     24/7
                   </div>
-                  <div className="text-sm text-gray-600">Care Available</div>
+                  <div className="text-sm font-bold text-gray-500 uppercase tracking-widest">Care Available</div>
                 </div>
               </div>
             </div>
