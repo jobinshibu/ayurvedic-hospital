@@ -54,11 +54,11 @@ export default function Header() {
           {/* Contact Info */}
           <div className="hidden lg:flex items-center space-x-4 text-sm text-gray-600">
             <a
-              href="tel:+919876543210"
+              href="tel:+919072771661"
               className="flex items-center space-x-1 hover:text-green-600 transition-colors cursor-pointer"
             >
               <Phone className="w-4 h-4" />
-              <span>+91 98765 43210</span>
+              <span>+91 9072 771661</span>
             </a>
           </div>
 
@@ -87,11 +87,11 @@ export default function Header() {
               ))}
               <div className="pt-3 border-t border-gray-200">
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+919072771661"
                   className="flex items-center space-x-2 text-sm text-gray-600 hover:text-green-600 transition-colors cursor-pointer"
                 >
                   <Phone className="w-4 h-4" />
-                  <span>+91 98765 43210</span>
+                  <span>+91 9072 771661</span>
                 </a>
               </div>
             </nav>
