@@ -87,28 +87,30 @@ export default function ContactSection() {
     setSubmitStatus(null);
 
     try {
-      // Using Formspree - Replace YOUR_FORM_ID with actual Formspree form ID
-      const response = await fetch('https://formspree.io/f/xlgdbglv', {
+      // Replace with your Google Apps Script Web App URL
+      const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzPwmXmBsAmAPnzaBZXuOYziVXXcxegglAXUxPfBpakC3tNv3-vq8UADbpnyQL5Iumd/exec';
+
+      const response = await fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
+        mode: 'no-cors', // Important for Google Apps Script
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
       });
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
-        });
-      } else {
-        setSubmitStatus('error');
-      }
+      // Note: with mode 'no-cors', we can't check response.ok or response.status
+      // We assume it worked if no exception was thrown
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
     } catch (error) {
+      console.error('Submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
