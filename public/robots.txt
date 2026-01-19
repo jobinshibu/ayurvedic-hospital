@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://namaste-ayurveda.vercel.app/sitemap.xml
