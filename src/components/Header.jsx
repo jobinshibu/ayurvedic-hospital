@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,10 +20,10 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div
+          <Link
+            to="/"
             className="flex items-center space-x-3 cursor-pointer"
             onClick={() => {
-              window.location.href = '/';
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
@@ -37,18 +38,28 @@ export default function Header() {
               <h1 className="text-2xl font-bold text-gray-800">Namaste Ayurveda</h1>
               <p className="text-sm text-green-600">In Memory of Sri. P V George Master</p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-gray-700 hover:text-green-600 transition-colors font-medium"
-              >
-                {item.label}
-              </a>
+              item.href.startsWith('/#') ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-gray-700 hover:text-green-600 transition-colors font-medium"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="text-gray-700 hover:text-green-600 transition-colors font-medium"
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -77,14 +88,25 @@ export default function Header() {
           <div className="lg:hidden pb-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-3 pt-4">
               {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-gray-700 hover:text-green-600 transition-colors font-medium"
-                  onClick={() => setIsMenuOpen(false)} // Close menu on click
-                >
-                  {item.label}
-                </a>
+                item.href.startsWith('/#') ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="text-gray-700 hover:text-green-600 transition-colors font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className="text-gray-700 hover:text-green-600 transition-colors font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
               ))}
               <div className="pt-3 border-t border-gray-200">
                 <a
