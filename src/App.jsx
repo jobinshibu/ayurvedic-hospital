@@ -1,22 +1,19 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import AboutSection from './components/AboutSection';
-import TreatmentSection from './components/TreatmentSection';
-import DoctorSection from './components/DoctorSection';
-import GallerySection from './components/GallerySection';
-import ContactSection from './components/ContactSection';
+import HomePage from './pages/HomePage';
+import OurPlansPage from './pages/OurPlansPage';
 
 function App() {
   return (
-    <div className="min-h-screen font-sans">
-      <Header />
-      <HeroSection />
-      <AboutSection/>
-      <TreatmentSection/>
-      <DoctorSection/>
-      <GallerySection/>
-      <ContactSection />
-    </div>
+    <Router>
+      <div className="min-h-screen font-sans">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/our-plans" element={<OurPlansPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

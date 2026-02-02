@@ -7,7 +7,7 @@ export default function AboutSection() {
   const sectionRef = useRef(null);
 
   const stats = [
-    { number: 500, suffix: '+', label: 'Patients Treated', icon: Users, color: 'emerald' },
+    { number: 1000, suffix: '+', label: 'Patients Treated', icon: Users, color: 'emerald' },
     { number: 10, suffix: '+', label: 'Expert Therapists', icon: Heart, color: 'rose' },
     { number: 50, suffix: '+', label: 'Herbal Treatments', icon: Leaf, color: 'green' }
   ];
@@ -79,14 +79,14 @@ export default function AboutSection() {
         const progress = currentStep / steps;
 
         setCounters({
-          patients: Math.floor(500 * progress),
+          patients: Math.floor(1000 * progress),
           therapists: Math.floor(10 * progress),
           treatments: Math.floor(50 * progress)
         });
 
         if (currentStep >= steps) {
           clearInterval(interval);
-          setCounters({ patients: 500, therapists: 10, treatments: 50 });
+          setCounters({ patients: 1000, therapists: 10, treatments: 50 });
         }
       }, stepDuration);
 

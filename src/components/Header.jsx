@@ -5,12 +5,13 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#treatments', label: 'Treatments' },
-    { href: '#doctors', label: 'Doctors' },
-    { href: '#gallery', label: 'Gallery' },
-    { href: '#contact', label: 'Contact' }
+    { href: '/', label: 'Home' },
+    { href: '/#about', label: 'About' },
+    { href: '/#treatments', label: 'Treatments' },
+    { href: '/#doctors', label: 'Doctors' },
+    { href: '/our-plans', label: 'Our Plans' },
+    { href: '/#gallery', label: 'Gallery' },
+    { href: '/#contact', label: 'Contact' }
   ];
 
   return (
@@ -21,7 +22,7 @@ export default function Header() {
           <div
             className="flex items-center space-x-3 cursor-pointer"
             onClick={() => {
-              window.location.href = '#home';
+              window.location.href = '/';
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
