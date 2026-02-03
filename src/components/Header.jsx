@@ -10,7 +10,7 @@ export default function Header() {
     { href: '/#about', label: 'About' },
     { href: '/#treatments', label: 'Treatments' },
     { href: '/#doctors', label: 'Doctors' },
-    { href: '/our-plans', label: 'Our Plans' },
+    // { href: '/our-plans', label: 'Our Plans' },
     { href: '/#gallery', label: 'Gallery' },
     { href: '/#contact', label: 'Contact' }
   ];
